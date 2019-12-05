@@ -1,2 +1,21 @@
-body{color:azure;background:black}
-/*# sourceMappingURL=style.css.map */
+html {
+    box-sizing: border-box;
+    }
+.container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        color: #333;
+        height: 90vh;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        overflow-y: auto;
+}
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 80px;
+    opacity: 0.5;
+    }
