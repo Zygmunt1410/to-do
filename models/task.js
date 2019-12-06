@@ -11,15 +11,16 @@ const Task = mongoose.model(
       maxlength: 200
     },
     date: {type: Date, default: Date.now },
-    inProgress: Boolean,
-    isDone: Boolean
+    state: String
   })
 );
 function validateTask(task) {
   const schema = {
     content: Joi.string()
       .min(3)
-      .required()
+      .required(),
+    state: Joi.string()
+      .pattern(/^new$|^in-progress$|^done$/)
   };
 
   return Joi.validate(task, schema);
