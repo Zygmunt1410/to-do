@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode=development",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,12 +22,14 @@
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.1",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0"
+    "style-loader": "^1.0.1"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "joi-objectid": "^3.0.1",
+    "mongoose": "^5.7.13",
+    "routes": "^2.1.0"
   }
 }
