@@ -1,0 +1,28 @@
+.wrapper {
+    max-height: 100hv;
+    max-width: 100wv;
+}
+
+.form {
+    max-width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.text {
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+.form-group {
+    margin-top: 3%;
+}
+
+.title {
+    font-size: 3.5rem;
+    margin-top: 4%;
+    margin-bottom: 7%;
+    color: rgb(31, 187, 192);
+    text-align: center;
+}
