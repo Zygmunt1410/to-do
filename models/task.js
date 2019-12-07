@@ -19,8 +19,7 @@ function validateTask(task) {
     content: Joi.string()
       .min(3)
       .required(),
-    state: Joi.string()
-      .pattern(/^new$|^in-progress$|^done$/)
+    state: Joi.string().regex(/^new$|^in-progress$|^done$/)
   };
 
   return Joi.validate(task, schema);
