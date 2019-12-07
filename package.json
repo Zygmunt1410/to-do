@@ -25,6 +25,7 @@
     "style-loader": "^1.0.1"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "joi": "^14.3.1",
