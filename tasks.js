@@ -16,6 +16,8 @@ const list1New = document.getElementById("list1");
 const list2InP = document.getElementById("list2");
 const list3Done = document.getElementById("list3");
 
+let allTasks = [];
+
 // na wejście na stronę:
 // 1. pobranie tasków z bazy - GET TASKS
 // 2. Pobrane taski są użyte do stworzenia listu ul z taskami, które już istnieją
@@ -26,11 +28,11 @@ const list3Done = document.getElementById("list3");
 load();
 
 async function load() {
-  let tasks = await getTasks();
+  allTasks = await getTasks();
 
-  let newTasks = tasks.filter(task => task.state === "new");
-  let inProgTasks = tasks.filter(task => task.state === "in-progress");
-  let doneTasks = tasks.filter(task => task.state === "done");
+  let newTasks = allTasks.filter(task => task.state === "new");
+  let inProgTasks = allTasks.filter(task => task.state === "in-progress");
+  let doneTasks = allTasks.filter(task => task.state === "done");
   drawTasks(newTasks, list1New);
   drawTasks(inProgTasks, list2InP);
   drawTasks(doneTasks, list3Done);
@@ -189,9 +191,8 @@ async function deleteTask(e) {
   return response;
 }
 
-async function updateTask(e) {
-  let taskId = e.target.parentElement.getAttribute("id");
-  const response = fetch(`http://localhost:4000/api/tasks/${taskId}`, {
+async function updateTask(id, task) {
+  const response = fetch(`http://localhost:4000/api/tasks/${id}`, {
     method: "PUT", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -208,14 +209,22 @@ async function updateTask(e) {
 
 function moveToInProgressTask(e) {
   let taskId = e.target.parentElement.getAttribute("id");
-  let taskInProgess = document.getElementById(taskId);
-  let ul2 = document.getElementById("list2");
-  ul2.appendChild(taskInProgess);
+  updateTaskState(taskId, "in-progress");
 }
 
 function moveToDoneTask(e) {
   let taskId = e.target.parentElement.getAttribute("id");
-  let taskDone = document.getElementById(taskId);
-  let ul3 = document.getElementById("list3");
-  ul3.appendChild(taskDone);
+  updateTaskState(taskId, "done");
+}
+
+async function updateTaskState(id, newState) {
+  let updatedTask = allTasks.find(t => t._id == id);
+  if (updatedTask) {
+    var data = {
+      content: updatedTask.content,
+      state: newState
+    };
+    await updateTask(updatedTask._id, data);
+    await load();
+  }
 }
