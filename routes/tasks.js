@@ -3,8 +3,12 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const tasks = await Task.find().sort("content");
-  res.send(tasks);
+  try {
+    const tasks = await Task.find().sort("content");
+    res.send(tasks);
+  } catch {
+    res.status(500).send("Something failed");
+  }
 });
 
 router.post("/", async (req, res) => {
@@ -36,12 +40,13 @@ router.post("/", async (req, res) => {
 // });
 
 router.delete("/:id", async (req, res) => {
-  const task = await Task.findByIdAndRemove(req.params.id);
-
-  if (!task)
-    return res.status(404).send("The TASK with the given ID was not found.");
-
-  res.send(task);
+  try {
+    const task = await Task.findByIdAndRemove(req.params.id);
+    res.send(task);
+  } catch {
+    if (!task)
+      return res.status(404).send("The TASK with the given ID was not found.");
+  }
 });
 
 // router.get("/:id", async (req, res) => {

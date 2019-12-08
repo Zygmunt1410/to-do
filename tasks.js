@@ -18,24 +18,17 @@ async function load() {
   drawTasks(tasks);
 }
 
-function addTask(e) {
+async function addTask(e) {
   if (inputTask1.validity.valid) {
-    console.log(e.target.value);
-    //tasks.push(inputTask1.value);
-    // let ul1 = document.getElementById("list1");
-    let li1 = document.createElement("li");
-    li1.className = "list-group-item";
-    li1.innerHTML = `${inputTask1.value} <span class="badge badge-danger">X</span><span class="badge badge-warning">In Progress</span>
-    <span class="badge badge-success">Done</span>`;
-    li1.setAttribute("id", "task");
-    form1.appendChild(li1);
-    // alert(li.id);
     var newTask = {
       content: inputTask1.value,
       state: "new"
     };
 
-    sendTaskToApi(task);
+    await sendTaskToApi(newTask);
+    let tasks = await getTasks();
+    drawTasks(tasks);
+
     inputTask1.value = "";
 
     e.preventDefault();
@@ -43,23 +36,27 @@ function addTask(e) {
 }
 
 async function sendTaskToApi(task) {
-  console.log("Wysyłam task");
-
-  const response = await fetch(url, {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, *cors, same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, *same-origin, omit
-    headers: {
-      "Content-Type": "application/json"
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: "follow", // manual, *follow, error
-    referrer: "no-referrer", // no-referrer, *client
-    body: JSON.stringify(task) // body data type must match "Content-Type" header
-  });
+  console.log("wysyłam task");
+  try {
+    const response = await fetch(url, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json"
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrer: "no-referrer", // no-referrer, *client
+      body: JSON.stringify(task) // body data type must match "Content-Type" header
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
 
   console.log(response);
+  console.log("Wysłałem task");
 }
 
 async function getTasks() {
@@ -82,27 +79,31 @@ async function getTasks() {
 
 function drawTasks(tasks) {
   let ul1 = document.getElementById("list1");
-  ul1.innerText = "";
+  var taskListItems = ul1.getElementsByClassName("task");
+  [...taskListItems].forEach(li => {
+    ul1.removeChild(li);
+  });
+
   tasks.forEach(task => {
     let li1 = document.createElement("li");
-    li1.className = "list-group-item";
+    li1.className = "list-group-item task";
 
     let deleteSpan = document.createElement("span");
     deleteSpan.setAttribute("class", "badge badge-danger");
-    deleteSpan.innerText = "X";
+    deleteSpan.innerText = "X ";
     deleteSpan.addEventListener("click", deleteTask);
 
     let inProgressSpan = document.createElement("span");
     inProgressSpan.setAttribute("class", "badge badge-warning");
-    inProgressSpan.innerText = "In Progress";
+    inProgressSpan.innerText = " In Progress ";
     inProgressSpan.addEventListener("click", moveToInProgressTask);
 
     let doneSpan = document.createElement("span");
     doneSpan.setAttribute("class", "badge badge-success");
-    doneSpan.innerText = "Done";
+    doneSpan.innerText = " Done";
     doneSpan.addEventListener("click", moveToDoneTask);
 
-    li1.innerHTML = task.content + " ";
+    li1.innerHTML = " " + task.content + " ";
     li1.appendChild(deleteSpan);
     li1.appendChild(inProgressSpan);
     li1.appendChild(doneSpan);
@@ -111,28 +112,28 @@ function drawTasks(tasks) {
   });
 }
 
-// async function deleteTask(e) {
-//   console.log("usuwam taska");
-//   let taskId = e.target.parentElement.getAttribute("id");
-
-//   const response = await fetch(`http://localhost:4000/api/tasks/${taskId}`, {
-//     method: "DELETE", // *GET, POST, PUT, DELETE, etc.
-//     mode: "cors", // no-cors, *cors, same-origin
-//     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-//     credentials: "same-origin", // include, *same-origin, omit
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     redirect: "follow", // manual, *follow, error
-//     referrer: "no-referrer"
-//   });
-
-//   return response.json();
-// }
-
-function deleteTask(e) {
+async function deleteTask(e) {
+  console.log("usuwam taska");
   let taskId = e.target.parentElement.getAttribute("id");
+
+  const response = fetch(`http://localhost:4000/api/tasks/${taskId}`, {
+    method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json"
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer"
+  });
+  document.getElementById(taskId).remove();
+  // return response.json();
 }
+
+// function deleteTask(e) {
+//   let taskId = e.target.parentElement.getAttribute("id");
+// }
 
 function moveToInProgressTask(e) {
   let taskId = e.target.parentElement.getAttribute("id");
