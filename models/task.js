@@ -1,19 +1,19 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
 
-const Task = mongoose.model(
-  "Task",
-  new mongoose.Schema({
-    content: {
-      type: String,
-      required: true,
-      minlength: 5,
-      maxlength: 200
-    },
-    date: {type: Date, default: Date.now },
-    state: String
-  })
-);
+const taskSchema = new mongoose.Schema({
+  content: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 200
+  },
+  date: { type: Date, default: Date.now },
+  state: String
+});
+
+const Task = mongoose.model("Task", taskSchema);
+
 function validateTask(task) {
   const schema = {
     content: Joi.string()
@@ -24,6 +24,6 @@ function validateTask(task) {
 
   return Joi.validate(task, schema);
 }
-
+exports.taskSchema = taskSchema;
 exports.Task = Task;
 exports.validate = validateTask;

@@ -4,6 +4,18 @@ const form1 = document.getElementById("add-task-form1");
 const inputTask1 = document.getElementById("input-task1");
 document.getElementById("btn-add-task1").addEventListener("click", addTask);
 
+const form2 = document.getElementById("add-task-form2");
+const inputTask2 = document.getElementById("input-task2");
+document.getElementById("btn-add-task2").addEventListener("click", addTask);
+
+const form3 = document.getElementById("add-task-form3");
+const inputTask3 = document.getElementById("input-task3");
+document.getElementById("btn-add-task3").addEventListener("click", addTask);
+
+const list1New = document.getElementById("list1");
+const list2InP = document.getElementById("list2");
+const list3Done = document.getElementById("list3");
+
 // na wejście na stronę:
 // 1. pobranie tasków z bazy - GET TASKS
 // 2. Pobrane taski są użyte do stworzenia listu ul z taskami, które już istnieją
@@ -15,48 +27,95 @@ load();
 
 async function load() {
   let tasks = await getTasks();
-  drawTasks(tasks);
+
+  let newTasks = tasks.filter(task => task.state === "new");
+  let inProgTasks = tasks.filter(task => task.state === "in-progress");
+  let doneTasks = tasks.filter(task => task.state === "done");
+  drawTasks(newTasks, list1New);
+  drawTasks(inProgTasks, list2InP);
+  drawTasks(doneTasks, list3Done);
 }
 
 async function addTask(e) {
   if (inputTask1.validity.valid) {
+    e.preventDefault();
     var newTask = {
       content: inputTask1.value,
       state: "new"
     };
 
-    await sendTaskToApi(newTask);
-    let tasks = await getTasks();
-    drawTasks(tasks);
+    var response = await sendTaskToApi(newTask);
+    if (response.ok) {
+      let tasks = await getTasks();
 
-    inputTask1.value = "";
+      let newTasks = tasks.filter(task => task.state === "new");
 
+      drawTasks(newTasks, list1New);
+
+      inputTask1.value = "";
+    } else {
+      alert("Nie można było dodać taska");
+    }
+  }
+  if (inputTask2.validity.valid) {
     e.preventDefault();
+    var inProgTask = {
+      content: inputTask2.value,
+      state: "in-progress"
+    };
+
+    var response = await sendTaskToApi(inProgTask);
+    if (response.ok) {
+      let tasks = await getTasks();
+
+      let inProgTasks = tasks.filter(task => task.state === "in-progress");
+
+      drawTasks(inProgTasks, list2InP);
+
+      inputTask2.value = "";
+    } else {
+      alert("Nie można było dodać taska");
+    }
+  }
+  if (inputTask3.validity.valid) {
+    e.preventDefault();
+    var doneTask = {
+      content: inputTask3.value,
+      state: "done"
+    };
+
+    var response = await sendTaskToApi(doneTask);
+    if (response.ok) {
+      let tasks = await getTasks();
+
+      let doneTasks = tasks.filter(task => task.state === "done");
+
+      drawTasks(doneTasks, list3Done);
+
+      inputTask3.value = "";
+    } else {
+      alert("Nie można było dodać taska");
+    }
   }
 }
 
 async function sendTaskToApi(task) {
   console.log("wysyłam task");
-  try {
-    const response = await fetch(url, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
-      headers: {
-        "Content-Type": "application/json"
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: "follow", // manual, *follow, error
-      referrer: "no-referrer", // no-referrer, *client
-      body: JSON.stringify(task) // body data type must match "Content-Type" header
-    });
-  } catch (err) {
-    console.log(err.message);
-  }
+  const response = await fetch(url, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json"
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+    body: JSON.stringify(task) // body data type must match "Content-Type" header
+  });
 
-  console.log(response);
-  console.log("Wysłałem task");
+  return response;
 }
 
 async function getTasks() {
@@ -77,16 +136,15 @@ async function getTasks() {
   return response.json();
 }
 
-function drawTasks(tasks) {
-  let ul1 = document.getElementById("list1");
-  var taskListItems = ul1.getElementsByClassName("task");
+function drawTasks(tasks, ul) {
+  var taskListItems = ul.getElementsByClassName("task");
   [...taskListItems].forEach(li => {
-    ul1.removeChild(li);
+    ul.removeChild(li);
   });
 
   tasks.forEach(task => {
-    let li1 = document.createElement("li");
-    li1.className = "list-group-item task";
+    let li = document.createElement("li");
+    li.className = "list-group-item task";
 
     let deleteSpan = document.createElement("span");
     deleteSpan.setAttribute("class", "badge badge-danger");
@@ -103,12 +161,12 @@ function drawTasks(tasks) {
     doneSpan.innerText = " Done";
     doneSpan.addEventListener("click", moveToDoneTask);
 
-    li1.innerHTML = " " + task.content + " ";
-    li1.appendChild(deleteSpan);
-    li1.appendChild(inProgressSpan);
-    li1.appendChild(doneSpan);
-    li1.setAttribute("id", task._id);
-    ul1.appendChild(li1);
+    li.innerHTML = " " + task.content + " ";
+    li.appendChild(deleteSpan);
+    li.appendChild(inProgressSpan);
+    li.appendChild(doneSpan);
+    li.setAttribute("id", task._id);
+    ul.appendChild(li);
   });
 }
 
@@ -128,17 +186,36 @@ async function deleteTask(e) {
     referrer: "no-referrer"
   });
   document.getElementById(taskId).remove();
-  // return response.json();
+  return response;
 }
 
-// function deleteTask(e) {
-//   let taskId = e.target.parentElement.getAttribute("id");
-// }
+async function updateTask(e) {
+  let taskId = e.target.parentElement.getAttribute("id");
+  const response = fetch(`http://localhost:4000/api/tasks/${taskId}`, {
+    method: "PUT", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json"
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer",
+    body: JSON.stringify(task)
+  });
+  return response;
+}
 
 function moveToInProgressTask(e) {
   let taskId = e.target.parentElement.getAttribute("id");
+  let taskInProgess = document.getElementById(taskId);
+  let ul2 = document.getElementById("list2");
+  ul2.appendChild(taskInProgess);
 }
 
 function moveToDoneTask(e) {
   let taskId = e.target.parentElement.getAttribute("id");
+  let taskDone = document.getElementById(taskId);
+  let ul3 = document.getElementById("list3");
+  ul3.appendChild(taskDone);
 }
