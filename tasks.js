@@ -48,9 +48,9 @@ async function addTask(e) {
 
     var response = await sendTaskToApi(newTask);
     if (response.ok) {
-      let tasks = await getTasks();
+      allTasks = await getTasks();
 
-      let newTasks = tasks.filter(task => task.state === "new");
+      let newTasks = allTasks.filter(task => task.state === "new");
 
       drawTasks(newTasks, list1New);
 
@@ -68,9 +68,9 @@ async function addTask(e) {
 
     var response = await sendTaskToApi(inProgTask);
     if (response.ok) {
-      let tasks = await getTasks();
+      allTasks = await getTasks();
 
-      let inProgTasks = tasks.filter(task => task.state === "in-progress");
+      let inProgTasks = allTasks.filter(task => task.state === "in-progress");
 
       drawTasks(inProgTasks, list2InP);
 
@@ -88,9 +88,9 @@ async function addTask(e) {
 
     var response = await sendTaskToApi(doneTask);
     if (response.ok) {
-      let tasks = await getTasks();
+      allTasks = await getTasks();
 
-      let doneTasks = tasks.filter(task => task.state === "done");
+      let doneTasks = allTasks.filter(task => task.state === "done");
 
       drawTasks(doneTasks, list3Done);
 
