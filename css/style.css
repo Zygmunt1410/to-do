@@ -34,10 +34,14 @@ h3 {
 }
 
 
-.hidden {
+/* .hidden {
     display: none;
-}
+} */
 
 span {
     margin: 10px;
+}
+
+.badge-danger {
+    margin-left: 100px;
 }
