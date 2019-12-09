@@ -25,13 +25,18 @@ html {
 .content1,
 .content2,
 .content3 {
-    margin: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-/* 
+h3 {
+    text-align: center;
+}
+
+
 .hidden {
     display: none;
-} */
+}
 
 span {
     margin: 10px;
