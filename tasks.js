@@ -18,13 +18,6 @@ const list3Done = document.getElementById("list3");
 
 let allTasks = [];
 
-// na wejście na stronę:
-// 1. pobranie tasków z bazy - GET TASKS
-// 2. Pobrane taski są użyte do stworzenia listu ul z taskami, które już istnieją
-// tak samo jak przy dodawaniu nowego taska
-// 3. Obsługa dodawania nowego taska - POST TASKS na guziku 'Add Task'. Po udanym callu do
-// API, pobranie znowu GET TASKS i wyświetlenie tasków tak jak w 2.
-
 load();
 
 async function load() {
@@ -150,20 +143,20 @@ function drawTasks(tasks, ul) {
 
     let deleteSpan = document.createElement("span");
     deleteSpan.setAttribute("class", "badge badge-danger");
-    deleteSpan.innerText = "X ";
+    deleteSpan.innerText = "DELETE";
     deleteSpan.addEventListener("click", deleteTask);
 
     let inProgressSpan = document.createElement("span");
     inProgressSpan.setAttribute("class", "badge badge-warning");
-    inProgressSpan.innerText = " In Progress ";
+    inProgressSpan.innerText = "IN-PROGRESS";
     inProgressSpan.addEventListener("click", moveToInProgressTask);
 
     let doneSpan = document.createElement("span");
     doneSpan.setAttribute("class", "badge badge-success");
-    doneSpan.innerText = " Done";
+    doneSpan.innerText = "DONE";
     doneSpan.addEventListener("click", moveToDoneTask);
 
-    li.innerHTML = " " + task.content + " ";
+    li.innerHTML = task.content + "    ";
     li.appendChild(deleteSpan);
     li.appendChild(inProgressSpan);
     li.appendChild(doneSpan);

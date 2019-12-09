@@ -21,6 +21,11 @@ html {
     font-size: 80px;
     opacity: 0.5;
 }
+
 .hidden {
     display: none;
+}
+
+span {
+    margin: 10px;
 }
