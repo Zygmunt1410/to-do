@@ -6,7 +6,7 @@ router.get("/", async (req, res) => {
   try {
     const tasks = await Task.find().sort("content");
     res.send(tasks);
-  } catch {
+  } catch (e){
     res.status(500).send("Something failed");
   }
 });
@@ -43,7 +43,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const task = await Task.findByIdAndRemove(req.params.id);
     res.send(task);
-  } catch {
+  } catch (e){
     if (!task)
       return res.status(404).send("The TASK with the given ID was not found.");
   }
