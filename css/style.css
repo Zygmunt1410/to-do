@@ -22,9 +22,16 @@ html {
     opacity: 0.5;
 }
 
+.content1,
+.content2,
+.content3 {
+    margin: 30px;
+}
+
+/* 
 .hidden {
     display: none;
-}
+} */
 
 span {
     margin: 10px;
