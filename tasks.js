@@ -156,10 +156,10 @@ function drawTasks(tasks, ul) {
     doneSpan.innerText = "DONE";
     doneSpan.addEventListener("click", moveToDoneTask);
 
-    li.innerHTML = task.content + "    ";
+    li.innerHTML = `${task.content} </br>`;
     li.appendChild(deleteSpan);
-    li.appendChild(inProgressSpan);
     li.appendChild(doneSpan);
+    li.appendChild(inProgressSpan);
     li.setAttribute("id", task._id);
     ul.appendChild(li);
   });

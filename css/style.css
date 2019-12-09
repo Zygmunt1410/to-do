@@ -39,9 +39,6 @@ h3 {
 } */
 
 span {
-    margin: 10px;
-}
-
-.badge-danger {
-    margin-left: 100px;
+    float: right;
+    margin: 5px;
 }
