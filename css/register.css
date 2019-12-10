@@ -1,12 +1,12 @@
-.wrapper {
+.wrapper, .login {
     max-height: 100hv;
     max-width: 100wv;
 }
 
 .form {
-    max-width: 60%;
-    margin-left: 20%;
-    margin-right: 20%;
+    max-width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 
 .text {
@@ -26,3 +26,18 @@
     color: rgb(31, 187, 192);
     text-align: center;
 }
+.message {
+    margin-top: 5%;
+    color: red;
+    font-weight: 500;
+}
+.to_singup, .to_login{
+    color: rgb(0, 89, 255);
+    margin-left: 3px;
+    font-weight: 500;
+}
+.change_link{
+    display: flex;
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }

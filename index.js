@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const users = require('./routes/users');
 const tasks = require("./routes/tasks");
 const express = require('express');
+const auth = require('./routes/auth');
 var cors = require('cors');
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use('/api/users', users);
 app.use("/api/tasks", tasks);
 app.use('/', users);
+app.use('/api/auth', auth);
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

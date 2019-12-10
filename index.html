@@ -1,209 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/register.css" />
-    <title>to-do</title>
-  </head>
 
-  <body>
-    <div class="wrapper" id="register_container">
-      <div class="form" id="register">
-        <form>
-          <h1 class="title">Sign up</h1>
-          <div class="form-group">
-            <label class="text" for="usernamesignup" class="uname" data-icon="u"
-              >Your username</label
-            >
-            <input
-              class="form-control form-control-lg"
-              id="usernamesignup"
-              name="usernamesignup"
-              type="text"
-              placeholder="username"
-              minlength="5"
-              maxlength="200"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label class="text" for="emailsignup" class="youmail" data-icon="e">
-              Your email</label
-            >
-            <input
-              class="form-control form-control-lg"
-              id="emailsignup"
-              name="emailsignup"
-              required
-              minlength="5"
-              maxlength="200"
-              type="text"
-              placeholder="usermail@mail.com"
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-            />
-          </div>
-          <div class="form-group">
-            <label
-              class="text"
-              for="passwordsignup"
-              class="youpasswd"
-              data-icon="p"
-              >Your password
-            </label>
-            <input
-              class="form-control form-control-lg"
-              id="passwordsignup"
-              name="passwordsignup"
-              required
-              minlength="5"
-              maxlength="200"
-              type="text"
-              autocomplete="off"
-              placeholder="eg. X8df!90EO"
-            />
-          </div>
-          <div class="form-group">
-            <label
-              class="text"
-              for="passwordsignup_confirm"
-              class="youpasswd"
-              data-icon="p"
-              >Please confirm your password
-            </label>
-            <input
-              class="form-control form-control-lg"
-              id="passwordsignup_confirm"
-              name="passwordsignup_confirm"
-              required
-              minlength="5"
-              maxlength="200"
-              autocomplete="off"
-              type="text"
-              placeholder="eg. X8df!90EO"
-            />
-          </div>
-          <div class="signin button">
-            <input
-              class="btn btn-primary btn-lg btn-block"
-              id="submit-button"
-              value="Sign up"
-              type="submit"
-            />
-          </div>
-          <div class="change_link">
-            Already a member ?
-            <a href="#tologin" class="to_register"> Go and log in </a>
-          </div>
-        </form>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/register.css" />
+  <title>to-do</title>
+</head>
+
+<body>
+
+  <div class="login" id="login_container">
+    <div class="form" id="login">
+      <form>
+        <h1 class="title">Log In</h1>
+        <div class="form-group">
+          <label class="text" for="emaillogin" class="youmail" data-icon="e">
+            Your email</label>
+          <input class="form-control form-control-lg" id="emaillogin" name="emaillogin" required minlength="5"
+            maxlength="200" type="text" placeholder="usermail@mail.com"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+        </div>
+        <div class="form-group">
+          <label class="text" for="passwordlogin" class="youpasswd" data-icon="p">Your password
+          </label>
+          <input class="form-control form-control-lg" id="passwordlogin" name="passwordlogin" required minlength="5"
+            maxlength="200" type="text" autocomplete="off" placeholder="eg. X8df!90EO" />
+        </div>
+        <div class="signin button">
+          <input class="btn btn-primary btn-lg btn-block" id="submit-button-login" value="Log In" type="submit" />
+        </div>
+        <div class="change_link">
+          Not Account Yet ? <p class="to_singup" id="to_singup"> Go and sing up </p>
+        </div>
+        <div class="text message" id="message">
+        </div>
+      </form>
     </div>
+  </div>
 
-    <div class="container hidden" id="tasks">
-      <div class="header">
-        <h1>The best to-do list!</h1>
-      </div>
-      <div class="content1">
-        <ul class="list-group" id="list1">
-          <h3>NEW TASKS</h3>
-        </ul>
-        <form id="add-task-form1">
-          <input
-            type="text"
-            class="form-control"
-            id="input-task1"
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-lg"
-            placeholder="Add task"
-            required
-            minlength="5"
-            maxlength="200"
-          />
-          <button
-            type="submit"
-            class="btn btn-primary btn-md btn-block"
-            id="btn-add-task1"
-          >
-            Add task
-          </button>
-        </form>
-      </div>
-      <div class="content2">
-        <ul class="list-group" id="list2">
-          <h3>IN PROGRESS TASKS</h3>
-        </ul>
-        <form id="add-task-form2">
-          <input
-            type="text"
-            class="form-control"
-            id="input-task2"
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-lg"
-            placeholder="Add task"
-            required
-            minlength="5"
-            maxlength="200"
-          />
-          <button
-            type="submit"
-            class="btn btn-warning btn-md btn-block"
-            id="btn-add-task2"
-          >
-            Add task
-          </button>
-        </form>
-      </div>
-      <div class="content3">
-        <ul class="list-group" id="list3">
-          <h3>DONE TASKS</h3>
-        </ul>
-        <form id="add-task-form3">
-          <input
-            type="text"
-            class="form-control"
-            id="input-task3"
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-lg"
-            placeholder="Add task"
-            required
-            minlength="5"
-            maxlength="200"
-          />
-          <button
-            type="submit"
-            class="btn btn-success btn-md btn-block"
-            id="btn-add-task3"
-          >
-            Add task
-          </button>
-        </form>
-      </div>
+  <div class="wrapper hidden" id="register_container">
+    <div class="form" id="register">
+      <form>
+        <h1 class="title">Sign up</h1>
+        <div class="form-group">
+          <label class="text" for="usernamesignup" class="uname" data-icon="u">Your username</label>
+          <input class="form-control form-control-lg" id="usernamesignup" name="usernamesignup" type="text"
+            placeholder="username" minlength="5" maxlength="200" required />
+        </div>
+        <div class="form-group">
+          <label class="text" for="emailsignup" class="youmail" data-icon="e">
+            Your email</label>
+          <input class="form-control form-control-lg" id="emailsignup" name="emailsignup" required minlength="5"
+            maxlength="200" type="text" placeholder="usermail@mail.com"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+        </div>
+        <div class="form-group">
+          <label class="text" for="passwordsignup" class="youpasswd" data-icon="p">Your password
+          </label>
+          <input class="form-control form-control-lg" id="passwordsignup" name="passwordsignup" required minlength="5"
+            maxlength="200" type="text" autocomplete="off" placeholder="eg. X8df!90EO" />
+        </div>
+        <div class="form-group">
+          <label class="text" for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password
+          </label>
+          <input class="form-control form-control-lg" id="passwordsignup_confirm" name="passwordsignup_confirm" required
+            minlength="5" maxlength="200" autocomplete="off" type="text" placeholder="eg. X8df!90EO" />
+        </div>
+        <div class="signin button">
+          <input class="btn btn-primary btn-lg btn-block" id="submit-button" value="Sign up" type="submit" />
+        </div>
+        <div class="change_link">
+          Already a member ?
+          <p class="to_login" id="to_login"> Go and log in </p>
+        </div>
+      </form>
     </div>
+  </div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-    <script src="tasks.js"></script>
-    <script src="register.js"></script>
-  </body>
+  <div class="container hidden" id="tasks">
+    <div class="header">
+      <h1>The best to-do list!</h1>
+    </div>
+    <div class="content1">
+      <ul class="list-group" id="list1">
+        <h3>NEW TASKS</h3>
+      </ul>
+      <form id="add-task-form1">
+        <input type="text" class="form-control" id="input-task1" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-lg" placeholder="Add task" required minlength="5" maxlength="200" />
+        <button type="submit" class="btn btn-primary btn-md btn-block" id="btn-add-task1">
+          Add task
+        </button>
+      </form>
+    </div>
+    <div class="content2">
+      <ul class="list-group" id="list2">
+        <h3>IN PROGRESS TASKS</h3>
+      </ul>
+      <form id="add-task-form2">
+        <input type="text" class="form-control" id="input-task2" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-lg" placeholder="Add task" required minlength="5" maxlength="200" />
+        <button type="submit" class="btn btn-warning btn-md btn-block" id="btn-add-task2">
+          Add task
+        </button>
+      </form>
+    </div>
+    <div class="content3">
+      <ul class="list-group" id="list3">
+        <h3>DONE TASKS</h3>
+      </ul>
+      <form id="add-task-form3">
+        <input type="text" class="form-control" id="input-task3" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-lg" placeholder="Add task" required minlength="5" maxlength="200" />
+        <button type="submit" class="btn btn-success btn-md btn-block" id="btn-add-task3">
+          Add task
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+  <script src="tasks.js"></script>
+  <script src="register.js"></script>
+  <script src="login.js"></script>
+</body>
+
 </html>

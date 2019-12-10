@@ -34,13 +34,15 @@ async function submitForm(e) {
       body: JSON.stringify(user) // body data type must match "Content-Type" header
 
     });
+    console.log(response.body)
+
     let registerPage = document.getElementById("register_container")
     let taskPage = document.getElementById("tasks")
     registerPage.classList.add("hidden")
     taskPage.classList.remove("hidden")
 
   } else {
-    //alert("Adding user failed");
+     //document.getElementById("message").innerText = "Incorrect email or password"
   }
 }
 
@@ -56,3 +58,13 @@ function validatePassword() {
 }
 password.onkeyup = validatePassword;
 confirm_password.onkeyup = validatePassword;
+
+const login = document.getElementById("to_login")
+login.addEventListener("click", toLogin)
+
+function toLogin() {
+    let registerPage = document.getElementById("register_container");
+    let loginPage = document.getElementById("login_container");
+    loginPage.classList.remove("hidden");
+    registerPage.classList.add("hidden");
+}
