@@ -8,7 +8,7 @@ html {
     margin: 0 auto;
     padding-left: 10px;
     padding-right: 10px;
-    color:#333;
+    color: #333;
     height: 90vh;
     margin-top: 5vh;
     margin-bottom: 5vh;
@@ -44,18 +44,21 @@ span {
     float: right;
     margin: 5px;
 }
-.big-banner{
-    background-image: url('../img/bg.jpg');
+
+.big-banner {
+    /* background-image: url('../img/bg.jpg'); */
     background-size: 100%;
 }
 
-h1{
+h1 {
     color: whitesmoke;
 }
-.list-group-item.task{
+
+.list-group-item.task {
     border-radius: .25rem;
 
 }
-.form-control{
+
+.form-control {
     margin-top: 2px;
 }
