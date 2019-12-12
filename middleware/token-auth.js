@@ -20,7 +20,7 @@ function accessTokenVerify(req, res, next) {
         error: "Token nie jest poprawny"
       });
     }
-    req.body.userId = decoded._id;
+    req.headers.userId = decoded._id;
     next();
   });
 }

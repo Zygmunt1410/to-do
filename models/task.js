@@ -1,5 +1,6 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
+const { userSchema } = require("./user");
 
 const taskSchema = new mongoose.Schema({
   content: {
@@ -9,11 +10,13 @@ const taskSchema = new mongoose.Schema({
     maxlength: 200
   },
   date: { type: Date, default: Date.now },
-  state: String
-  // user: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: "User"
-  // }
+  state: { type: String, required: true },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+    unique: false
+  }
 });
 
 const Task = mongoose.model("Task", taskSchema);
@@ -23,7 +26,8 @@ function validateTask(task) {
     content: Joi.string()
       .min(3)
       .required(),
-    state: Joi.string().regex(/^new$|^in-progress$|^done$/)
+    state: Joi.string().regex(/^new$|^in-progress$|^done$/) //,
+    //userId: Joi.string().required()
   };
 
   return Joi.validate(task, schema);
