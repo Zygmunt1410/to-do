@@ -18,9 +18,9 @@ const list3Done = document.getElementById("list3");
 
 let allTasks = [];
 
-load();
+//loadTasks();
 
-async function load() {
+async function loadTasks() {
   allTasks = await getTasks();
 
   let newTasks = allTasks.filter(task => task.state === "new");

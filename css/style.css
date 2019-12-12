@@ -29,7 +29,7 @@ html {
     margin-bottom: 50px;
 }
 
-h3 {
+/* h3 {
     text-align: center;
     color: rgb(101, 144, 173);
     opacity: 0.7;
@@ -38,7 +38,7 @@ h3 {
 
 .hidden {
     display: none;
-}
+} */
 
 span {
     float: right;
@@ -51,7 +51,7 @@ span {
 }
 
 .app-title {
-    color: rgb(238, 236, 236); 
+    color: rgb(238, 236, 236);
     text-shadow: black 0.1em 0.1em 0.2em;
     font-size: 3rem;
 }
