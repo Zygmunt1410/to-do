@@ -31,10 +31,10 @@ html {
 
 h3 {
     text-align: center;
-    color: whitesmoke;
-    opacity: 0.7
+    color: rgb(101, 144, 173);
+    opacity: 0.7;
+    
 }
-
 
 .hidden {
     display: none;
@@ -50,8 +50,10 @@ span {
     background-size: 100%;
 }
 
-h1 {
-    color: whitesmoke;
+.app-title {
+    color: rgb(238, 236, 236); 
+    text-shadow: black 0.1em 0.1em 0.2em;
+    font-size: 3rem;
 }
 
 .list-group-item.task {

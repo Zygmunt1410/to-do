@@ -7,12 +7,19 @@
     max-width: 40%;
     margin-left: 30%;
     margin-right: 30%;
+    margin-top: 3%;
+    padding: 3%;
+    border : 1px solid #17a2b8
 }
 
-.text {
-    letter-spacing: 2px;
+.text{
+    letter-spacing: 1.2px;
     font-size: 1.2rem;
     line-height: 1.2;
+
+}
+.text-info{
+    margin-bottom: 5%;
 }
 
 .form-group {
@@ -35,9 +42,35 @@
     color: rgb(0, 89, 255);
     margin-left: 3px;
     font-weight: 500;
+    cursor: pointer;
 }
 .change_link{
     display: flex;
     font-size: 1.2rem;
     margin-top: 10px;
-  }
+}
+@media (max-width: 1000px) {
+    .form {
+        max-width: 54%;
+        margin-left: 23%;
+        margin-right: 23%;
+    }
+    .text-info{ font-size: 2.2rem;}
+}
+@media (max-width: 680px) {
+    .form {
+        max-width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+    .text-info{ font-size: 2rem;}
+}
+@media (max-width: 500px) {
+    .form {
+        max-width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .text-info { font-size: 1.8rem;}
+    .text, .change_link{font-size: 1rem}
+}
