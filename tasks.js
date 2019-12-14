@@ -20,8 +20,6 @@ const list3Done = document.getElementById("list3");
 
 let allTasks = [];
 
-// loadTasks();
-
 async function loadTasks() {
   allTasks = await getTasks();
 
