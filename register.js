@@ -1,4 +1,4 @@
-const urlUser = "http://localhost:4000/api/users";
+const urlUser = "https://to-do-coders.herokuapp.com/api/users";
 
 document.getElementById("submit-button").addEventListener("click", submitForm);
 

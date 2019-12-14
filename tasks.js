@@ -1,6 +1,6 @@
 import { getBearerTokenHeader } from "./user-localStorage.js";
 
-const url = "http://localhost:4000/api/tasks";
+const url = "https://to-do-coders.herokuapp.com/api/tasks";
 
 const form1 = document.getElementById("add-task-form1");
 const inputTask1 = document.getElementById("input-task1");
@@ -170,7 +170,7 @@ async function deleteTask(e) {
   console.log("usuwam taska");
   let taskId = e.target.parentElement.getAttribute("id");
 
-  const response = fetch(`http://localhost:4000/api/tasks/${taskId}`, {
+  const response = fetch(`https://to-do-coders.herokuapp.com/api/tasks/${taskId}`, {
     method: "DELETE", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -187,7 +187,7 @@ async function deleteTask(e) {
 }
 
 async function updateTask(id, task) {
-  const response = fetch(`http://localhost:4000/api/tasks/${id}`, {
+  const response = fetch(`https://to-do-coders.herokuapp.com/api/tasks/${id}`, {
     method: "PUT", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

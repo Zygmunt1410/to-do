@@ -1,6 +1,6 @@
 import { saveTokenToStorage, logout } from "./user-localStorage.js";
 import { loadTasks } from "./tasks.js";
-const urlAuth = "http://localhost:4000/api/auth";
+const urlAuth = "https://to-do-coders.herokuapp.com/api/auth";
 
 let formLogout = document.getElementById("formLogout");
 formLogout.addEventListener("click", logout);
