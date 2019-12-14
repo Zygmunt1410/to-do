@@ -9,7 +9,7 @@ var cors = require("cors");
 const app = express();
 // require("./prod.js");
 
-mongo_uri = ENV['MONGODB_URI']
+mongo_uri = MONGODB_URI;
 
 mongoose
   .connect(mongo_uri)
