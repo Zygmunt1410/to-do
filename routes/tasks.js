@@ -51,12 +51,6 @@ router.put("/:id", tokenAuth, async (req, res) => {
 
   task = await task.save();
 
-  // task = await Task.findByIdAndUpdate(
-  //   req.params.id,
-  //   { content: req.body.content, state: req.body.state },
-  //   { new: true }
-  // );
-
   res.send(task);
 });
 

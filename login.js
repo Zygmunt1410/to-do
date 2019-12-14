@@ -2,6 +2,9 @@ import { saveTokenToStorage, logout } from "./user-localStorage.js";
 import { loadTasks } from "./tasks.js";
 const urlAuth = "http://localhost:4000/api/auth";
 
+let formLogout = document.getElementById("formLogout");
+formLogout.addEventListener("click", logout);
+
 document
   .getElementById("submit-button-login")
   .addEventListener("click", userLogin);
@@ -44,9 +47,6 @@ async function userLogin(e) {
       let authResponse = await response.json();
       saveTokenToStorage(authResponse.token);
       loadTasks();
-
-      let formLogout = document.getElementById("formLogout");
-      formLogout.addEventListener("click", logout);
     } else {
       document.getElementById("message").innerText =
         "Incorrect email or password";
