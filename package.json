@@ -4,13 +4,14 @@
   "description": "to do list",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode=development",
-    "build": "webpack --mode=production",
     "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "to-do-list"
+  },
+  "engines": {
+    "node": "v12.13.1"
   },
   "author": "\u0016Joanna Skrzypińska&Katarzyna Bukowska&\u001b[D \u001b[D\u001b[&Tomasz Ziółkowski",
   "license": "ISC",
