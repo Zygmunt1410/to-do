@@ -1,3 +1,5 @@
+import { saveTokenToStorage, logout } from "./user-localStorage.js";
+import { loadTasks } from "./tasks.js";
 const urlAuth = "http://localhost:4000/api/auth";
 
 document
@@ -5,15 +7,15 @@ document
   .addEventListener("click", userLogin);
 
 async function userLogin(e) {
-  mail = document.getElementById("emaillogin");
-  pass = document.getElementById("passwordlogin");
+  let mail = document.getElementById("emaillogin");
+  let pass = document.getElementById("passwordlogin");
 
   if (mail.validity.valid && pass.validity.valid) {
     e.preventDefault();
 
     let user = {};
-    email = document.getElementById("emaillogin").value;
-    password = document.getElementById("passwordlogin").value;
+    let email = document.getElementById("emaillogin").value;
+    let password = document.getElementById("passwordlogin").value;
 
     user.email = email;
     user.password = password;
@@ -39,7 +41,12 @@ async function userLogin(e) {
       loginPage.classList.add("hidden");
       registerPage.classList.add("hidden");
       taskPage.classList.remove("hidden");
+      let authResponse = await response.json();
+      saveTokenToStorage(authResponse.token);
       loadTasks();
+
+      let formLogout = document.getElementById("formLogout");
+      formLogout.addEventListener("click", logout);
     } else {
       document.getElementById("message").innerText =
         "Incorrect email or password";

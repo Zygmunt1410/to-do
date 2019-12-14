@@ -1,3 +1,5 @@
+import { getBearerTokenHeader } from "./user-localStorage.js";
+
 const url = "http://localhost:4000/api/tasks";
 
 const form1 = document.getElementById("add-task-form1");
@@ -18,7 +20,7 @@ const list3Done = document.getElementById("list3");
 
 let allTasks = [];
 
-loadTasks();
+// loadTasks();
 
 async function loadTasks() {
   allTasks = await getTasks();
@@ -102,8 +104,8 @@ async function sendTaskToApi(task) {
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
-      "Content-Type": "application/json"
-      // 'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/json",
+      Authorization: getBearerTokenHeader()
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
@@ -122,7 +124,8 @@ async function getTasks() {
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: getBearerTokenHeader()
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer"
@@ -175,7 +178,8 @@ async function deleteTask(e) {
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: getBearerTokenHeader()
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer"
@@ -191,7 +195,8 @@ async function updateTask(id, task) {
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: getBearerTokenHeader()
     },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer",
@@ -218,6 +223,8 @@ async function updateTaskState(id, newState) {
       state: newState
     };
     await updateTask(updatedTask._id, data);
-    await load();
+    await loadTasks();
   }
 }
+
+export { loadTasks };

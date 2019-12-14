@@ -34,7 +34,7 @@
             maxlength="200" type="text" autocomplete="off" placeholder="eg. X8df!90EO" title="Enter the password" />
         </div>
         <div class="signin button">
-          <input class="btn btn-primary btn-lg btn-block" id="submit-button-login" value="Log In" type="submit" />
+          <input class="btn btn-primary btn-lg btn-block" id="submit-button-login" value="Log In" />
         </div>
         <div class="change_link">
           Not Account Yet ? <p class="to_singup" id="to_singup"> Go and sing up </p>
@@ -123,7 +123,7 @@
         </button>
       </form>
     </div>
-    <form class="form-logout" role="form">
+    <form class="form-logout" id="formLogout" role="form">
       <input type="submit" value="Logout" id="logout" class="btn btn-primary btn-lg">
     </form>
   </div>
@@ -137,10 +137,10 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
   </script>
-  <script src="tasks.js"></script>
+  <script src="tasks.js" type="module"></script>
   <script src="register.js"></script>
-  <script src="login.js"></script>
-  <!-- <script src="logout.js"></script> -->
+  <script src="user-localStorage.js" type="module"></script>
+  <script src="login.js" type="module"></script>
 </body>
 
 </html>
