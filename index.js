@@ -9,8 +9,10 @@ var cors = require("cors");
 const app = express();
 // require("./prod.js");
 
+mongo_uri = ENV['MONGODB_URI']
+
 mongoose
-  .connect("mongodb://localhost/todoapp")
+  .connect(mongo_uri)
   .then(() => console.log("Now connected to MongoDB!"))
   .catch(err => console.error("Something went wrong", err));
 
