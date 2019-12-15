@@ -74,3 +74,6 @@
     .text-info { font-size: 1.8rem;}
     .text, .change_link{font-size: 1rem}
 }
+.lower {
+    text-transform: lowercase;
+}
