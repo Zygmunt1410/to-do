@@ -23,6 +23,7 @@
 .text-info {
     margin-bottom: 5%;
     color: #17a2b8 !important;
+    text-align: center;
 }
 
 .form-group {
