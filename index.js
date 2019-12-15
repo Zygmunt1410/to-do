@@ -7,7 +7,6 @@ const express = require("express");
 const auth = require("./routes/auth");
 var cors = require("cors");
 const app = express();
-// require("./prod.js");
 
 mongo_uri = process.env.MONGODB_URI;
 

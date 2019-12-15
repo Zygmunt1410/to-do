@@ -2,15 +2,12 @@ import { getBearerTokenHeader } from "./user-localStorage.js";
 
 const url = "https://to-do-coders.herokuapp.com/api/tasks";
 
-const form1 = document.getElementById("add-task-form1");
 const inputTask1 = document.getElementById("input-task1");
 document.getElementById("btn-add-task1").addEventListener("click", addTask);
 
-const form2 = document.getElementById("add-task-form2");
 const inputTask2 = document.getElementById("input-task2");
 document.getElementById("btn-add-task2").addEventListener("click", addTask);
 
-const form3 = document.getElementById("add-task-form3");
 const inputTask3 = document.getElementById("input-task3");
 document.getElementById("btn-add-task3").addEventListener("click", addTask);
 
@@ -95,37 +92,34 @@ async function addTask(e) {
 }
 
 async function sendTaskToApi(task) {
-  console.log("wysyłam task");
   const response = await fetch(url, {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, *cors, same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, *same-origin, omit
+    method: "POST",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
       Authorization: getBearerTokenHeader()
     },
-    redirect: "follow", // manual, *follow, error
-    referrer: "no-referrer", // no-referrer, *client
-    body: JSON.stringify(task) // body data type must match "Content-Type" header
+    redirect: "follow",
+    referrer: "no-referrer",
+    body: JSON.stringify(task)
   });
 
   return response;
 }
 
 async function getTasks() {
-  console.log("Pobieram taski");
-
   const response = await fetch(url, {
-    method: "GET", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, *cors, same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, *same-origin, omit
+    method: "GET",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
       Authorization: getBearerTokenHeader()
     },
-    redirect: "follow", // manual, *follow, error
+    redirect: "follow",
     referrer: "no-referrer"
   });
 
@@ -167,36 +161,38 @@ function drawTasks(tasks, ul) {
 }
 
 async function deleteTask(e) {
-  console.log("usuwam taska");
   let taskId = e.target.parentElement.getAttribute("id");
 
-  const response = fetch(`https://to-do-coders.herokuapp.com/api/tasks/${taskId}`, {
-    method: "DELETE", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, *cors, same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, *same-origin, omit
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: getBearerTokenHeader()
-    },
-    redirect: "follow", // manual, *follow, error
-    referrer: "no-referrer"
-  });
+  const response = fetch(
+    `https://to-do-coders.herokuapp.com/api/tasks/${taskId}`,
+    {
+      method: "DELETE",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: getBearerTokenHeader()
+      },
+      redirect: "follow",
+      referrer: "no-referrer"
+    }
+  );
   document.getElementById(taskId).remove();
   return response;
 }
 
 async function updateTask(id, task) {
   const response = fetch(`https://to-do-coders.herokuapp.com/api/tasks/${id}`, {
-    method: "PUT", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, *cors, same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, *same-origin, omit
+    method: "PUT",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
       Authorization: getBearerTokenHeader()
     },
-    redirect: "follow", // manual, *follow, error
+    redirect: "follow",
     referrer: "no-referrer",
     body: JSON.stringify(task)
   });

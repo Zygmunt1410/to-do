@@ -1,4 +1,5 @@
-.wrapper, .login {
+.wrapper,
+.login {
     max-height: 100hv;
     max-width: 100wv;
 }
@@ -9,17 +10,19 @@
     margin-right: 30%;
     margin-top: 3%;
     padding: 3%;
-    border : 1px solid #17a2b8
+    border: 1px solid #17a2b8
 }
 
-.text{
+.text {
     letter-spacing: 1.2px;
     font-size: 1.2rem;
     line-height: 1.2;
-
+    color: whitesmoke
 }
-.text-info{
+
+.text-info {
     margin-bottom: 5%;
+    color: #17a2b8 !important;
 }
 
 .form-group {
@@ -33,47 +36,69 @@
     color: rgb(31, 187, 192);
     text-align: center;
 }
+
 .message {
     margin-top: 5%;
     color: red;
     font-weight: 500;
 }
-.to_singup, .to_login{
-    color: rgb(0, 89, 255);
+
+.to_singup,
+.to_login {
+    color: #17a2b8;
     margin-left: 3px;
     font-weight: 500;
     cursor: pointer;
 }
-.change_link{
+
+.change_link {
     display: flex;
     font-size: 1.2rem;
     margin-top: 10px;
+    color: whitesmoke
 }
+
 @media (max-width: 1000px) {
     .form {
         max-width: 54%;
         margin-left: 23%;
         margin-right: 23%;
     }
-    .text-info{ font-size: 2.2rem;}
+
+    .text-info {
+        font-size: 2.2rem;
+    }
 }
+
 @media (max-width: 680px) {
     .form {
         max-width: 70%;
         margin-left: 15%;
         margin-right: 15%;
     }
-    .text-info{ font-size: 2rem;}
+
+    .text-info {
+        font-size: 2rem;
+    }
 }
+
 @media (max-width: 500px) {
     .form {
         max-width: 90%;
         margin-left: 5%;
         margin-right: 5%;
     }
-    .text-info { font-size: 1.8rem;}
-    .text, .change_link{font-size: 1rem}
+
+    .text-info {
+        font-size: 1.8rem
+    }
+
+    .text,
+    .change_link {
+        font-size: 1rem
+    }
 }
+
 .lower {
     text-transform: lowercase;
 }

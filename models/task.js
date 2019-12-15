@@ -1,6 +1,5 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
-const { userSchema } = require("./user");
 
 const taskSchema = new mongoose.Schema({
   content: {
@@ -26,8 +25,7 @@ function validateTask(task) {
     content: Joi.string()
       .min(3)
       .required(),
-    state: Joi.string().regex(/^new$|^in-progress$|^done$/) //,
-    //userId: Joi.string().required()
+    state: Joi.string().regex(/^new$|^in-progress$|^done$/)
   };
 
   return Joi.validate(task, schema);

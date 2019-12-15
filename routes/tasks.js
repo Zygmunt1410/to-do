@@ -4,8 +4,6 @@ const express = require("express");
 const router = express.Router();
 const tokenAuth = require("../middleware/token-auth.js");
 
-// tokenAuth;
-
 router.get("/", tokenAuth, async (req, res) => {
   console.log("Pobieranie taskow dla: " + req.headers.userId);
   try {
@@ -21,7 +19,6 @@ router.post("/", tokenAuth, async (req, res) => {
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
-  console.log("Dodawanie taska dla: " + req.headers.userId);
   const user = await User.findById(req.headers.userId);
   if (!user) return res.status(400).send("Ivalid user");
 
@@ -41,10 +38,10 @@ router.put("/:id", tokenAuth, async (req, res) => {
 
   let task = await Task.findById(req.params.id);
 
-  if (!task) return res.status(404).send("Nie znaleziono taska");
+  if (!task) return res.status(404).send("Task not found");
 
   if (task.user != req.headers.userId)
-    return res.status(403).send("Brak dostępu do taska");
+    return res.status(403).send("Access forbidden");
 
   task.content = req.body.content;
   task.state = req.body.state;
